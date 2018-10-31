@@ -18,7 +18,7 @@ public final class UI extends javax.swing.JFrame {
     static ArrayList<Semaphore> palillo = new ArrayList<>();
     public static JLabel[] iterations, states, dones, dishes, chopsticks, statesImages;
     public boolean active;
-    ImageIcon philosopher, edish, ldish, rdish, fdish;
+    ImageIcon philosopher, edish, ldish, rdish, fdish, chop;
     
     public UI() {
         initComponents();
@@ -35,6 +35,7 @@ public final class UI extends javax.swing.JFrame {
         rdish = new ImageIcon(getClass().getResource("/misc/rdish.png"));
         ldish = new ImageIcon(getClass().getResource("/misc/ldish.png"));
         fdish = new ImageIcon(getClass().getResource("/misc/bothdish.png"));
+        chop = new ImageIcon(getClass().getResource("/misc/chop.png"));
         philo2.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(philosopher.getImage()), 360/5)));
         philo3.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(philosopher.getImage()), (360/5)*2)));
         philo4.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(philosopher.getImage()), (360/5)*3)));
@@ -44,7 +45,11 @@ public final class UI extends javax.swing.JFrame {
         dish3.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(edish.getImage()), (360/5)*2)));
         dish4.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(edish.getImage()), (360/5)*3)));
         dish5.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(edish.getImage()), (360/5)*4)));
-
+        chop1.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(chop.getImage()), 330)));
+        chop2.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(chop.getImage()), 330 + 65)));
+        chop3.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(chop.getImage()), 330 + (65*2))));
+        chop4.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(chop.getImage()), 330 + (70*3))));
+        chop5.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(chop.getImage()), 330 + (70*4))));
     }
     
     public static BufferedImage toBufferedImage(Image img){
@@ -89,6 +94,12 @@ public final class UI extends javax.swing.JFrame {
         dishes[2] = dish3;
         dishes[3] = dish4;
         dishes[4] = dish5;
+        chopsticks = new JLabel[5];
+        chopsticks[0] = chop1;
+        chopsticks[1] = chop2;
+        chopsticks[2] = chop3;
+        chopsticks[3] = chop4;
+        chopsticks[4] = chop5;
         active = true;
         startButton.setEnabled(false);
         stopButton.setEnabled(true);
@@ -207,6 +218,11 @@ public final class UI extends javax.swing.JFrame {
         pauseButton = new javax.swing.JButton();
         continueButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        chop5 = new javax.swing.JLabel();
+        chop4 = new javax.swing.JLabel();
+        chop3 = new javax.swing.JLabel();
+        chop2 = new javax.swing.JLabel();
+        chop1 = new javax.swing.JLabel();
         philo5 = new javax.swing.JLabel();
         philo4 = new javax.swing.JLabel();
         philo3 = new javax.swing.JLabel();
@@ -308,6 +324,21 @@ public final class UI extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(315, 315));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        chop5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/chop.png"))); // NOI18N
+        jPanel1.add(chop5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, -1, -1));
+
+        chop4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/chop.png"))); // NOI18N
+        jPanel1.add(chop4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
+
+        chop3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/chop.png"))); // NOI18N
+        jPanel1.add(chop3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, -1, -1));
+
+        chop2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/chop.png"))); // NOI18N
+        jPanel1.add(chop2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, -1, -1));
+
+        chop1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/chop.png"))); // NOI18N
+        jPanel1.add(chop1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
+
         philo5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/philosopher.png"))); // NOI18N
         jPanel1.add(philo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
 
@@ -346,9 +377,8 @@ public final class UI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(168, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(153, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(stopButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -394,7 +424,10 @@ public final class UI extends javax.swing.JFrame {
                                     .addComponent(state4)
                                     .addComponent(state3)
                                     .addComponent(state)
-                                    .addComponent(state1))))))
+                                    .addComponent(state1)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)))
                 .addContainerGap(169, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -456,9 +489,9 @@ public final class UI extends javax.swing.JFrame {
                             .addComponent(filo5, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(execResult)))
-                .addGap(15, 15, 15)
+                .addGap(36, 36, 36)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         filo1.getAccessibleContext().setAccessibleName("filo1_name");
@@ -500,6 +533,11 @@ public final class UI extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel chop1;
+    private javax.swing.JLabel chop2;
+    private javax.swing.JLabel chop3;
+    private javax.swing.JLabel chop4;
+    private javax.swing.JLabel chop5;
     private javax.swing.JButton continueButton;
     private javax.swing.JLabel dish1;
     private javax.swing.JLabel dish2;
