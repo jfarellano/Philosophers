@@ -16,10 +16,10 @@ import javax.swing.JLabel;
 public final class UI extends javax.swing.JFrame {
     public static Filosofo[] fs = new Filosofo[5];
     static ArrayList<Semaphore> palillo = new ArrayList<>();
-    public static JLabel[] iterations, states, dones;
+    public static JLabel[] iterations, states, dones, dishes, chopsticks, statesImages;
     public boolean active;
-    ImageIcon philosopher = new ImageIcon(getClass().getResource("/misc/philosopher.png"));
-    ImageIcon philosopher1 = new ImageIcon(getClass().getResource("/misc/philosopher.png"));
+    ImageIcon philosopher, edish, ldish, rdish, fdish;
+    
     public UI() {
         initComponents();
         initLabels();
@@ -30,10 +30,21 @@ public final class UI extends javax.swing.JFrame {
     }
     
     public void initLabels(){
+        philosopher = new ImageIcon(getClass().getResource("/misc/philosopher.png"));
+        edish = new ImageIcon(getClass().getResource("/misc/emptydish.png"));
+        rdish = new ImageIcon(getClass().getResource("/misc/rdish.png"));
+        ldish = new ImageIcon(getClass().getResource("/misc/ldish.png"));
+        fdish = new ImageIcon(getClass().getResource("/misc/bothdish.png"));
         philo2.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(philosopher.getImage()), 360/5)));
-        philo3.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(philosopher1.getImage()), (360/5)*2)));
+        philo3.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(philosopher.getImage()), (360/5)*2)));
         philo4.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(philosopher.getImage()), (360/5)*3)));
         philo5.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(philosopher.getImage()), (360/5)*4)));
+        dish1.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(edish.getImage()), (360/5)*0)));
+        dish2.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(edish.getImage()), (360/5)*1)));
+        dish3.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(edish.getImage()), (360/5)*2)));
+        dish4.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(edish.getImage()), (360/5)*3)));
+        dish5.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(edish.getImage()), (360/5)*4)));
+
     }
     
     public static BufferedImage toBufferedImage(Image img){
@@ -72,6 +83,12 @@ public final class UI extends javax.swing.JFrame {
         dones[2] = done3;
         dones[3] = done4;
         dones[4] = done5;
+        dishes = new JLabel[5];
+        dishes[0] = dish1;
+        dishes[1] = dish2;
+        dishes[2] = dish3;
+        dishes[3] = dish4;
+        dishes[4] = dish5;
         active = true;
         startButton.setEnabled(false);
         stopButton.setEnabled(true);
@@ -109,6 +126,15 @@ public final class UI extends javax.swing.JFrame {
             iterations[i].setText(fs[i].iteraciones + "");
             states[i].setText(num2satate(fs[i].estado));
             dones[i].setText(fs[i].hecho + "");
+            if(fs[i].left && fs[i].rigth){
+                dishes[i].setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(fdish.getImage()), (360/5)*i)));
+            }else if(fs[i].rigth){
+                dishes[i].setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(rdish.getImage()), (360/5)*i)));
+            }else if(fs[i].left){
+                dishes[i].setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(ldish.getImage()), (360/5)*i)));
+            }else{
+                dishes[i].setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(edish.getImage()), (360/5)*i)));
+            }
         }
     }
     
@@ -186,6 +212,11 @@ public final class UI extends javax.swing.JFrame {
         philo3 = new javax.swing.JLabel();
         philo2 = new javax.swing.JLabel();
         philo1 = new javax.swing.JLabel();
+        dish5 = new javax.swing.JLabel();
+        dish4 = new javax.swing.JLabel();
+        dish3 = new javax.swing.JLabel();
+        dish2 = new javax.swing.JLabel();
+        dish1 = new javax.swing.JLabel();
         table = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -292,7 +323,22 @@ public final class UI extends javax.swing.JFrame {
         philo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/philosopher.png"))); // NOI18N
         jPanel1.add(philo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
 
-        table.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/table.png"))); // NOI18N
+        dish5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/emptydish.png"))); // NOI18N
+        jPanel1.add(dish5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, -1, -1));
+
+        dish4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/emptydish.png"))); // NOI18N
+        jPanel1.add(dish4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, -1, -1));
+
+        dish3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/emptydish.png"))); // NOI18N
+        jPanel1.add(dish3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, -1, -1));
+
+        dish2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/emptydish.png"))); // NOI18N
+        jPanel1.add(dish2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
+
+        dish1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/emptydish.png"))); // NOI18N
+        jPanel1.add(dish1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, -1, -1));
+
+        table.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/referencetable.png"))); // NOI18N
         jPanel1.add(table, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -455,6 +501,11 @@ public final class UI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton continueButton;
+    private javax.swing.JLabel dish1;
+    private javax.swing.JLabel dish2;
+    private javax.swing.JLabel dish3;
+    private javax.swing.JLabel dish4;
+    private javax.swing.JLabel dish5;
     private javax.swing.JLabel done;
     private javax.swing.JLabel done1;
     private javax.swing.JLabel done2;
