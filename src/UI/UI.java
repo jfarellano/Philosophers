@@ -1,11 +1,16 @@
 package UI;
 
 import filosofoscomensales.Filosofo;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public final class UI extends javax.swing.JFrame {
@@ -13,16 +18,30 @@ public final class UI extends javax.swing.JFrame {
     static ArrayList<Semaphore> palillo = new ArrayList<>();
     public static JLabel[] iterations, states, dones;
     public boolean active;
+    ImageIcon philosopher = new ImageIcon(getClass().getResource("/misc/philosopher.png"));
+    ImageIcon philosopher1 = new ImageIcon(getClass().getResource("/misc/philosopher.png"));
     public UI() {
         initComponents();
+        initLabels();
         active = false;
         stopButton.setEnabled(false);
         pauseButton.setEnabled(false);
         continueButton.setEnabled(false);
     }
     
-    public Filosofo[] getFS(){
-        return fs;
+    public void initLabels(){
+        philo2.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(philosopher.getImage()), 360/5)));
+        philo3.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(philosopher1.getImage()), (360/5)*2)));
+        philo4.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(philosopher.getImage()), (360/5)*3)));
+        philo5.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(philosopher.getImage()), (360/5)*4)));
+    }
+    
+    public static BufferedImage toBufferedImage(Image img){
+        BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        Graphics2D bGr = bimage.createGraphics();
+        bGr.drawImage(img, 0, 0, null);
+        bGr.dispose();
+        return bimage;
     }
     
     public void startrun(){
@@ -102,6 +121,31 @@ public final class UI extends javax.swing.JFrame {
         if(num == 3) return "Saciado";
         return "Invalid";
     }
+    
+    public BufferedImage rotateImageByDegrees(BufferedImage img, double angle) {
+        double rads = Math.toRadians(angle);
+        double sin = Math.abs(Math.sin(rads)), cos = Math.abs(Math.cos(rads));
+        int w = img.getWidth();
+        int h = img.getHeight();
+        int newWidth = (int) Math.floor(w * cos + h * sin);
+        int newHeight = (int) Math.floor(h * cos + w * sin);
+
+        BufferedImage rotated = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = rotated.createGraphics();
+        AffineTransform at = new AffineTransform();
+        at.translate((newWidth - w) / 2, (newHeight - h) / 2);
+
+        int x = w / 2;
+        int y = h / 2;
+
+        at.rotate(rads, x, y);
+        g2d.setTransform(at);
+        g2d.drawImage(img, 0, 0, null);
+        g2d.dispose();
+
+        return rotated;
+    }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -136,6 +180,13 @@ public final class UI extends javax.swing.JFrame {
         stopButton = new javax.swing.JButton();
         pauseButton = new javax.swing.JButton();
         continueButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        philo5 = new javax.swing.JLabel();
+        philo4 = new javax.swing.JLabel();
+        philo3 = new javax.swing.JLabel();
+        philo2 = new javax.swing.JLabel();
+        philo1 = new javax.swing.JLabel();
+        table = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
@@ -223,63 +274,96 @@ public final class UI extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setPreferredSize(new java.awt.Dimension(315, 315));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        philo5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/philosopher.png"))); // NOI18N
+        jPanel1.add(philo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
+
+        philo4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/philosopher.png"))); // NOI18N
+        jPanel1.add(philo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 160, -1, -1));
+
+        philo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/philosopher.png"))); // NOI18N
+        jPanel1.add(philo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, -1, -1));
+
+        philo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/philosopher.png"))); // NOI18N
+        jPanel1.add(philo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, -1, -1));
+
+        philo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/philosopher.png"))); // NOI18N
+        jPanel1.add(philo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
+
+        table.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/table.png"))); // NOI18N
+        jPanel1.add(table, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(270, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(stopButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(startButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pauseButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(continueButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(168, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(execResult)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(filo5)
-                                    .addComponent(filo4)
-                                    .addComponent(filo3)
-                                    .addComponent(filo1)
-                                    .addComponent(name))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(iter5)
-                                    .addComponent(iter)
-                                    .addComponent(iter4)
-                                    .addComponent(iter3)
-                                    .addComponent(iter1)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(filo2)
-                                .addGap(18, 18, 18)
-                                .addComponent(iter2)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(done2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(done5)
-                            .addComponent(done4)
-                            .addComponent(done3)
-                            .addComponent(done1)
-                            .addComponent(done, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(stopButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(startButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pauseButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(continueButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(state2)
-                            .addComponent(state5)
-                            .addComponent(state4)
-                            .addComponent(state3)
-                            .addComponent(state)
-                            .addComponent(state1))))
-                .addGap(32, 32, 32))
+                            .addComponent(execResult)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(filo5)
+                                            .addComponent(filo4)
+                                            .addComponent(filo3)
+                                            .addComponent(filo1)
+                                            .addComponent(name))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(iter5)
+                                            .addComponent(iter)
+                                            .addComponent(iter4)
+                                            .addComponent(iter3)
+                                            .addComponent(iter1)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(filo2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(iter2)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(done2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(done5)
+                                    .addComponent(done4)
+                                    .addComponent(done3)
+                                    .addComponent(done1)
+                                    .addComponent(done, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(state2)
+                                    .addComponent(state5)
+                                    .addComponent(state4)
+                                    .addComponent(state3)
+                                    .addComponent(state)
+                                    .addComponent(state1))))))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(startButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stopButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pauseButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(continueButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -325,16 +409,10 @@ public final class UI extends javax.swing.JFrame {
                             .addComponent(iter5, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(filo5, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(execResult))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(startButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(stopButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pauseButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(continueButton)))
-                .addContainerGap(342, Short.MAX_VALUE))
+                        .addComponent(execResult)))
+                .addGap(15, 15, 15)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         filo1.getAccessibleContext().setAccessibleName("filo1_name");
@@ -395,8 +473,14 @@ public final class UI extends javax.swing.JFrame {
     private javax.swing.JLabel iter3;
     private javax.swing.JLabel iter4;
     private javax.swing.JLabel iter5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel name;
     private javax.swing.JButton pauseButton;
+    private javax.swing.JLabel philo1;
+    private javax.swing.JLabel philo2;
+    private javax.swing.JLabel philo3;
+    private javax.swing.JLabel philo4;
+    private javax.swing.JLabel philo5;
     private javax.swing.JButton startButton;
     private javax.swing.JLabel state;
     private javax.swing.JLabel state1;
@@ -405,5 +489,6 @@ public final class UI extends javax.swing.JFrame {
     private javax.swing.JLabel state4;
     private javax.swing.JLabel state5;
     private javax.swing.JButton stopButton;
+    private javax.swing.JLabel table;
     // End of variables declaration//GEN-END:variables
 }
