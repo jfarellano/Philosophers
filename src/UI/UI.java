@@ -18,7 +18,7 @@ public final class UI extends javax.swing.JFrame {
     static ArrayList<Semaphore> palillo = new ArrayList<>();
     public static JLabel[] iterations, states, dones, dishes, chopsticks, statesImages;
     public boolean active;
-    ImageIcon philosopher, edish, ldish, rdish, fdish, chop;
+    ImageIcon philosopher, edish, ldish, rdish, fdish, chop, nothing, eating, thinking, waiting, satisfied;
     
     public UI() {
         initComponents();
@@ -36,6 +36,11 @@ public final class UI extends javax.swing.JFrame {
         ldish = new ImageIcon(getClass().getResource("/misc/ldish.png"));
         fdish = new ImageIcon(getClass().getResource("/misc/bothdish.png"));
         chop = new ImageIcon(getClass().getResource("/misc/chop.png"));
+        nothing = new ImageIcon(getClass().getResource("/misc/nothing.png"));
+        eating = new ImageIcon(getClass().getResource("/misc/eating.png"));
+        thinking = new ImageIcon(getClass().getResource("/misc/thinking.png"));
+        waiting = new ImageIcon(getClass().getResource("/misc/wating.png"));
+        satisfied = new ImageIcon(getClass().getResource("/misc/done.png"));
         philo2.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(philosopher.getImage()), 360/5)));
         philo3.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(philosopher.getImage()), (360/5)*2)));
         philo4.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(philosopher.getImage()), (360/5)*3)));
@@ -95,11 +100,17 @@ public final class UI extends javax.swing.JFrame {
         dishes[3] = dish4;
         dishes[4] = dish5;
         chopsticks = new JLabel[5];
-        chopsticks[0] = chop1;
-        chopsticks[1] = chop2;
-        chopsticks[2] = chop3;
-        chopsticks[3] = chop4;
-        chopsticks[4] = chop5;
+        chopsticks[0] = chop2;
+        chopsticks[1] = chop3;
+        chopsticks[2] = chop4;
+        chopsticks[3] = chop5;
+        chopsticks[4] = chop1;
+        statesImages = new JLabel[5];
+        statesImages[0] = stateImage2;
+        statesImages[1] = stateImage3;
+        statesImages[2] = stateImage4;
+        statesImages[3] = stateImage5;
+        statesImages[4] = stateImage1;
         active = true;
         startButton.setEnabled(false);
         stopButton.setEnabled(true);
@@ -137,7 +148,7 @@ public final class UI extends javax.swing.JFrame {
             iterations[i].setText(fs[i].iteraciones + "");
             states[i].setText(num2satate(fs[i].estado));
             dones[i].setText(fs[i].hecho + "");
-            if(fs[i].left && fs[i].rigth){
+            if(fs[i].rigth && fs[i].left){
                 dishes[i].setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(fdish.getImage()), (360/5)*i)));
             }else if(fs[i].rigth){
                 dishes[i].setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(rdish.getImage()), (360/5)*i)));
@@ -146,9 +157,36 @@ public final class UI extends javax.swing.JFrame {
             }else{
                 dishes[i].setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(edish.getImage()), (360/5)*i)));
             }
+            if(available(i)){
+                chopsticks[i].setVisible(true);
+            }else{
+                chopsticks[i].setVisible(false);
+            }
+            switch (fs[i].estado) {
+                case 0:
+                    statesImages[i].setIcon(thinking);
+                    break;
+                case 1:
+                    statesImages[i].setIcon(waiting);
+                    break;
+                case 2:
+                    statesImages[i].setIcon(eating);
+                    break;
+                case 3:
+                    statesImages[i].setIcon(satisfied);
+                    break;
+                default:
+                    throw new AssertionError();
+            }
         }
     }
     
+    public boolean available(int i){
+        if(palillo.get(i).availablePermits() == 1){
+            return true;
+        }
+        return false;
+    }
 
     public String num2satate(int num){
         //0 = Pensando, 1 = Esperando, 2 = Comiendo, 3 = Saciado.
@@ -218,6 +256,11 @@ public final class UI extends javax.swing.JFrame {
         pauseButton = new javax.swing.JButton();
         continueButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        stateImage1 = new javax.swing.JLabel();
+        stateImage2 = new javax.swing.JLabel();
+        stateImage3 = new javax.swing.JLabel();
+        stateImage4 = new javax.swing.JLabel();
+        stateImage5 = new javax.swing.JLabel();
         chop5 = new javax.swing.JLabel();
         chop4 = new javax.swing.JLabel();
         chop3 = new javax.swing.JLabel();
@@ -323,6 +366,21 @@ public final class UI extends javax.swing.JFrame {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(315, 315));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        stateImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/nothing.png"))); // NOI18N
+        jPanel1.add(stateImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
+
+        stateImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/nothing.png"))); // NOI18N
+        jPanel1.add(stateImage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(222, 23, -1, -1));
+
+        stateImage3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/nothing.png"))); // NOI18N
+        jPanel1.add(stateImage3, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 170, -1, -1));
+
+        stateImage4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/nothing.png"))); // NOI18N
+        jPanel1.add(stateImage4, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 274, -1, -1));
+
+        stateImage5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/nothing.png"))); // NOI18N
+        jPanel1.add(stateImage5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
         chop5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/misc/chop.png"))); // NOI18N
         jPanel1.add(chop5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, -1, -1));
@@ -515,20 +573,22 @@ public final class UI extends javax.swing.JFrame {
         active = false;
         for(int i = 0; i < 5; i++){
             try {
-                fs[i].wait();
+                palillo.get(i).wait();
             } catch (InterruptedException ex) {
                 Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         pauseButton.setEnabled(false);
+        continueButton.setEnabled(true);
     }//GEN-LAST:event_pauseButtonActionPerformed
 
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
         active = true;
         for(int i = 0; i < 5; i++){
-            fs[i].notify();
+            palillo.get(i).notify();
         }
         pauseButton.setEnabled(true);
+        continueButton.setEnabled(false);
     }//GEN-LAST:event_continueButtonActionPerformed
     
 
@@ -577,6 +637,11 @@ public final class UI extends javax.swing.JFrame {
     private javax.swing.JLabel state3;
     private javax.swing.JLabel state4;
     private javax.swing.JLabel state5;
+    private javax.swing.JLabel stateImage1;
+    private javax.swing.JLabel stateImage2;
+    private javax.swing.JLabel stateImage3;
+    private javax.swing.JLabel stateImage4;
+    private javax.swing.JLabel stateImage5;
     private javax.swing.JButton stopButton;
     private javax.swing.JLabel table;
     // End of variables declaration//GEN-END:variables
