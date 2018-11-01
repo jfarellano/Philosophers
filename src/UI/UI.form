@@ -28,150 +28,170 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="execResult" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="helpLable" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="stopButton" max="32767" attributes="0"/>
-                  <Component id="startButton" max="32767" attributes="0"/>
-                  <Component id="pauseButton" alignment="1" max="32767" attributes="0"/>
-                  <Component id="continueButton" alignment="1" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="filo5" min="-2" max="-2" attributes="0"/>
-                          <Component id="filo4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="filo3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="filo1" min="-2" max="-2" attributes="0"/>
-                          <Component id="name" alignment="0" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jPanel1" min="-2" pref="390" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="stopButton" max="32767" attributes="0"/>
+                          <Component id="startButton" max="32767" attributes="0"/>
+                          <Component id="pauseButton" alignment="1" max="32767" attributes="0"/>
+                          <Component id="continueButton" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="iter5" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="iter" min="-2" max="-2" attributes="0"/>
-                          <Component id="iter4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="iter3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="iter1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="filo5" min="-2" max="-2" attributes="0"/>
+                                  <Component id="filo4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="filo3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="filo1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="name" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="iter5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="iter" min="-2" max="-2" attributes="0"/>
+                                  <Component id="iter4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="iter3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="iter1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="filo2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="iter2" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="done2" max="32767" attributes="0"/>
+                          <Component id="done5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="done4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="done3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="done1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="done" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="state2" min="-2" max="-2" attributes="0"/>
+                          <Component id="state5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="state4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="state3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="state" min="-2" max="-2" attributes="0"/>
+                          <Component id="state1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="filo2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Component id="iter2" min="-2" max="-2" attributes="0"/>
-                  </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="done2" max="32767" attributes="0"/>
-                  <Component id="done5" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="done4" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="done3" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="done1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="done" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="state2" min="-2" max="-2" attributes="0"/>
-                  <Component id="state5" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="state4" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="state3" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="state" min="-2" max="-2" attributes="0"/>
-                  <Component id="state1" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="65" max="32767" attributes="0"/>
-              <Component id="jPanel1" min="-2" pref="390" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <EmptySpace pref="16" max="32767" attributes="0"/>
+              <Component id="execResult" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="startButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="stopButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pauseButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="continueButton" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
+                      <Component id="execResult" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="state" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="done" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="startButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="state1" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                      <Component id="done1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                          <Component id="iter1" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="filo1" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="stopButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="pauseButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="continueButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="state" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="done" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="state1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                              <Component id="done1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                                  <Component id="iter1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="filo1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
                                       </Group>
                                   </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="iter" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="name" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                      <Component id="state2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="done2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                      <Component id="filo2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="iter2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="iter" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="name" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="state3" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="done3" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="iter3" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="filo3" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="state4" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="done4" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="iter4" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="filo4" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="state5" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="done5" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="iter5" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="filo5" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="state2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="done2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="filo2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="iter2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="state3" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="done3" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="iter3" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="filo3" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="state4" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="done4" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="iter4" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="filo4" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="state5" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="done5" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="iter5" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="filo5" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="execResult" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" pref="348" max="-2" attributes="0"/>
-              <EmptySpace pref="49" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="helpLable" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="19" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -179,6 +199,9 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="filo1">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a0" green="43" red="1" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Filosofo 1:"/>
       </Properties>
       <AccessibilityProperties>
@@ -187,103 +210,163 @@
     </Component>
     <Component class="javax.swing.JLabel" name="filo2">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a0" green="43" red="1" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Filosofo 2:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="filo3">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a0" green="43" red="1" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Filosofo 3:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="filo4">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a0" green="43" red="1" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Filosofo 4:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="filo5">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a0" green="43" red="1" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Filosofo 5:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="iter1">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a0" green="43" red="1" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="iter2">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a0" green="43" red="1" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="iter3">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a0" green="43" red="1" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="iter4">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a0" green="43" red="1" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="iter5">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a0" green="43" red="1" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="done1">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a0" green="43" red="1" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="done2">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a0" green="43" red="1" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="done3">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a0" green="43" red="1" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="done4">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a0" green="43" red="1" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="done5">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a0" green="43" red="1" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="state1">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a0" green="43" red="1" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="estado"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="state2">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a0" green="43" red="1" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="estado"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="state3">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a0" green="43" red="1" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="estado"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="state4">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a0" green="43" red="1" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="estado"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="state5">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a0" green="43" red="1" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="estado"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="name">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Ubuntu" size="10" style="1"/>
+          <Font name="Ubuntu" size="14" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="42" green="1c" red="1" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Nombre"/>
       </Properties>
@@ -291,7 +374,10 @@
     <Component class="javax.swing.JLabel" name="iter">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Ubuntu" size="10" style="1"/>
+          <Font name="Ubuntu" size="14" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="42" green="1c" red="1" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Iteraciones totales"/>
       </Properties>
@@ -299,7 +385,10 @@
     <Component class="javax.swing.JLabel" name="done">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Ubuntu" size="10" style="1"/>
+          <Font name="Ubuntu" size="14" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="42" green="1c" red="1" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Hechas"/>
       </Properties>
@@ -307,7 +396,10 @@
     <Component class="javax.swing.JLabel" name="state">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Ubuntu" size="10" style="1"/>
+          <Font name="Ubuntu" size="14" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="42" green="1c" red="1" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Estados"/>
       </Properties>
@@ -616,5 +708,30 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Ubuntu" size="24" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="5e" green="28" red="1" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Filosofos comensales"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="helpLable">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Ubuntu" size="14" style="0"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/misc/information.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Ayuda"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="helpLableMouseClicked"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>
