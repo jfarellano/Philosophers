@@ -43,28 +43,20 @@ public final class UI extends javax.swing.JFrame {
         thinking = new ImageIcon(getClass().getResource("/misc/thinking.png"));
         waiting = new ImageIcon(getClass().getResource("/misc/wating.png"));
         satisfied = new ImageIcon(getClass().getResource("/misc/done.png"));
-        philo2.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(philosopher.getImage()), 360/5)));
-        philo3.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(philosopher.getImage()), (360/5)*2)));
-        philo4.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(philosopher.getImage()), (360/5)*3)));
-        philo5.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(philosopher.getImage()), (360/5)*4)));
-        dish1.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(edish.getImage()), (360/5)*0)));
-        dish2.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(edish.getImage()), (360/5)*1)));
-        dish3.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(edish.getImage()), (360/5)*2)));
-        dish4.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(edish.getImage()), (360/5)*3)));
-        dish5.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(edish.getImage()), (360/5)*4)));
-        chop1.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(chop.getImage()), 330)));
-        chop2.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(chop.getImage()), 330 + 65)));
-        chop3.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(chop.getImage()), 330 + (65*2))));
-        chop4.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(chop.getImage()), 330 + (70*3))));
-        chop5.setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(chop.getImage()), 330 + (70*4))));
-    }
-    
-    public static BufferedImage toBufferedImage(Image img){
-        BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
-        Graphics2D bGr = bimage.createGraphics();
-        bGr.drawImage(img, 0, 0, null);
-        bGr.dispose();
-        return bimage;
+        philo2.setIcon(rotateImageIcon(philosopher, 360/5));
+        philo3.setIcon(rotateImageIcon(philosopher, (360/5)*2));
+        philo4.setIcon(rotateImageIcon(philosopher, (360/5)*3));
+        philo5.setIcon(rotateImageIcon(philosopher, (360/5)*4));
+        dish1.setIcon(rotateImageIcon(edish, (360/5)*0));
+        dish2.setIcon(rotateImageIcon(edish, (360/5)*1));
+        dish3.setIcon(rotateImageIcon(edish, (360/5)*2));
+        dish4.setIcon(rotateImageIcon(edish, (360/5)*3));
+        dish5.setIcon(rotateImageIcon(edish, (360/5)*4));
+        chop1.setIcon(rotateImageIcon(chop, 330));
+        chop2.setIcon(rotateImageIcon(chop, 330 + 65));
+        chop3.setIcon(rotateImageIcon(chop, 330 + (65*2)));
+        chop4.setIcon(rotateImageIcon(chop, 330 + (70*3)));
+        chop5.setIcon(rotateImageIcon(chop, 330 + (70*4)));
     }
     
     public void startrun(){
@@ -151,13 +143,13 @@ public final class UI extends javax.swing.JFrame {
             states[i].setText(num2satate(fs[i].estado));
             dones[i].setText(fs[i].hecho + "");
             if(fs[i].rigth && fs[i].left){
-                dishes[i].setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(fdish.getImage()), (360/5)*i)));
+                dishes[i].setIcon(rotateImageIcon(fdish, (365/5)*i));
             }else if(fs[i].rigth){
-                dishes[i].setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(rdish.getImage()), (360/5)*i)));
+                dishes[i].setIcon(rotateImageIcon(rdish, (365/5)*i));
             }else if(fs[i].left){
-                dishes[i].setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(ldish.getImage()), (360/5)*i)));
+                dishes[i].setIcon(rotateImageIcon(ldish, (365/5)*i));
             }else{
-                dishes[i].setIcon(new ImageIcon(rotateImageByDegrees(toBufferedImage(edish.getImage()), (360/5)*i)));
+                dishes[i].setIcon(rotateImageIcon(edish, (365/5)*i));
             }
             if(available(i)){
                 chopsticks[i].setVisible(true);
@@ -199,30 +191,30 @@ public final class UI extends javax.swing.JFrame {
         return "Invalid";
     }
     
-    public BufferedImage rotateImageByDegrees(BufferedImage img, double angle) {
+    public ImageIcon rotateImageIcon(ImageIcon icon, double angle){
+        Image image = icon.getImage();
+        BufferedImage img = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        Graphics2D bGr = img.createGraphics();
+        bGr.drawImage(image, 0, 0, null);
+        bGr.dispose();
         double rads = Math.toRadians(angle);
         double sin = Math.abs(Math.sin(rads)), cos = Math.abs(Math.cos(rads));
         int w = img.getWidth();
         int h = img.getHeight();
         int newWidth = (int) Math.floor(w * cos + h * sin);
         int newHeight = (int) Math.floor(h * cos + w * sin);
-
         BufferedImage rotated = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = rotated.createGraphics();
         AffineTransform at = new AffineTransform();
         at.translate((newWidth - w) / 2, (newHeight - h) / 2);
-
         int x = w / 2;
         int y = h / 2;
-
         at.rotate(rads, x, y);
         g2d.setTransform(at);
         g2d.drawImage(img, 0, 0, null);
         g2d.dispose();
-
-        return rotated;
+        return new ImageIcon(rotated);
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
