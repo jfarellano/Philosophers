@@ -1,5 +1,6 @@
 package filosofoscomensales;
 
+import UI.UI;
 import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
@@ -7,7 +8,7 @@ import java.util.logging.Logger;
 
 public class Filosofo extends Thread {
     
-    public ArrayList<Semaphore> palillo;
+    public UI ui;
     public int idFilosofo;
     public int NumeroFilosofos;
     public int iteraciones;
@@ -15,8 +16,8 @@ public class Filosofo extends Thread {
     public int hecho;
     public boolean left, rigth, active, stop;
     
-    public Filosofo(ArrayList<Semaphore> palillo, int idFilosofo, int NumeroFilosofos,int iteraciones) {
-        this.palillo = palillo;
+    public Filosofo(UI ui, int idFilosofo, int NumeroFilosofos,int iteraciones) {
+        this.ui = ui;
         this.idFilosofo = idFilosofo;
         this.NumeroFilosofos = NumeroFilosofos;
         this.iteraciones = iteraciones;
@@ -30,6 +31,7 @@ public class Filosofo extends Thread {
     private void pensar(int iteracion){
         try {
             estado = 0;
+            ui.redoState(idFilosofo, estado);
             this.sleep((long) (10000 * Math.random()));
             synchronized(this) {
                 while(stop) {
@@ -46,6 +48,7 @@ public class Filosofo extends Thread {
     private void comer(int iteracion){
         try {
             estado = 2;
+            ui.redoState(idFilosofo, estado);
             this.sleep((long) (10000 * Math.random()));
             synchronized(this) {
                 while(stop) {
@@ -55,6 +58,7 @@ public class Filosofo extends Thread {
                 //this.sleep((long) (5000 * Math.random()));
             }
             hecho += 1;
+            ui.dones[idFilosofo].setText(hecho + "");
         } catch (InterruptedException ex) {
             Logger.getLogger(Filosofo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -62,6 +66,7 @@ public class Filosofo extends Thread {
         
     private void esperando(int iteracion) {
         estado = 1;
+        ui.redoState(idFilosofo, estado);
         try {
             synchronized(this) {
                 while(stop) {
@@ -85,9 +90,9 @@ public class Filosofo extends Thread {
     }
     
     public void fixDispair(){
-        palillo.get(idFilosofo).release();
+        ui.palillo.get(idFilosofo).release();
         this.left = false;
-        palillo.get(rigthIndex(idFilosofo)).release();
+        ui.palillo.get(rigthIndex(idFilosofo)).release();
         this.rigth = false;
     }
     
@@ -99,22 +104,50 @@ public class Filosofo extends Thread {
         stop = false;
         notify();
     }
+ 
     
     @Override
     public void run() {
+        ui.dones[idFilosofo].setText(0 + "");
+        ui.iterations[idFilosofo].setText(iteraciones + "");
         for (int i = 1; i <= iteraciones; i++) {
             try {
+                //Think...!
                 pensar(i);
+                
+                //Waiting...!
                 esperando(i);
-                palillo.get(rigthIndex(idFilosofo)).acquire();
+                
+                //Right chopstick...!
+                ui.palillo.get(rigthIndex(idFilosofo)).acquire();
+                ui.redoAvailableChopstick(rigthIndex(idFilosofo), false);
+                ui.redoChopstickOnDish(idFilosofo, true, false);
                 this.rigth = true;
-                palillo.get(idFilosofo).acquire();
+                
+                //Left chopstick...!
+                ui.palillo.get(idFilosofo).acquire();
+                ui.redoAvailableChopstick(idFilosofo, false);
+                ui.redoChopstickOnDish(idFilosofo, true, true);
                 this.left = true;
+                
+                //Eat...!
                 comer(i);
-                if(isDone()) estado = 3;
-                palillo.get(idFilosofo).release();
+                if(isDone()){
+                    estado = 3;
+                    ui.redoState(idFilosofo, estado);
+                    ui.dones[idFilosofo].setText(iteraciones + "");
+                }
+                
+                //Left chopstick...!
+                ui.redoChopstickOnDish(idFilosofo, true, false);
+                ui.redoAvailableChopstick(idFilosofo, true);
+                ui.palillo.get(idFilosofo).release();
                 this.left = false;
-                palillo.get(rigthIndex(idFilosofo)).release();
+                
+                //Right chopstick...!
+                ui.redoChopstickOnDish(idFilosofo, false, false);
+                ui.redoAvailableChopstick(rigthIndex(idFilosofo), true);
+                ui.palillo.get(rigthIndex(idFilosofo)).release();
                 this.rigth = false;
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
