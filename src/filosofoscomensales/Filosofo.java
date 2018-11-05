@@ -30,13 +30,12 @@ public class Filosofo extends Thread {
     private void pensar(int iteracion){
         try {
             estado = 0;
-            this.sleep((long) (10000 * Math.random()));
+            this.sleep((long) (100 * Math.random()));
             synchronized(this) {
                 while(stop) {
                     wait();
-                    System.out.println("Im in! - pensar");
+                    //System.out.println("Im in! - pensar");
                 }
-               //this.sleep((long) (5000 * Math.random()));
             }
         } catch (InterruptedException ex) {
             Logger.getLogger(Filosofo.class.getName()).log(Level.SEVERE, null, ex);
@@ -46,13 +45,12 @@ public class Filosofo extends Thread {
     private void comer(int iteracion){
         try {
             estado = 2;
-            this.sleep((long) (10000 * Math.random()));
+            this.sleep((long) (100 * Math.random()));
             synchronized(this) {
                 while(stop) {
                     wait();
-                    System.out.println("Im in! - comer");
+                    //System.out.println("Im in! - comer");
                 }
-                //this.sleep((long) (5000 * Math.random()));
             }
             hecho += 1;
         } catch (InterruptedException ex) {
@@ -66,9 +64,8 @@ public class Filosofo extends Thread {
             synchronized(this) {
                 while(stop) {
                     wait();
-                    System.out.println("Im in! - esperar");
+                    //System.out.println("Im in! - esperar");
                 }
-               //this.sleep((long) (10000 * Math.random()));
             }
         } catch (InterruptedException ex) {
             Logger.getLogger(Filosofo.class.getName()).log(Level.SEVERE, null, ex);
@@ -82,13 +79,6 @@ public class Filosofo extends Thread {
     public int rigthIndex(int i){
         if(i == 0) return 4;
         return i-1;
-    }
-    
-    public void fixDispair(){
-        palillo.get(idFilosofo).release();
-        this.left = false;
-        palillo.get(rigthIndex(idFilosofo)).release();
-        this.rigth = false;
     }
     
     public void stopThread(){

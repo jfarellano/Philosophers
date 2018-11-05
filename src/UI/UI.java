@@ -9,14 +9,12 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public final class UI extends javax.swing.JFrame {
-    public static Filosofo[] fs = new Filosofo[5];
-    static ArrayList<Semaphore> palillo = new ArrayList<>();
+    public static Filosofo[] fs;
+    static ArrayList<Semaphore> palillo;
     public static JLabel[] iterations, states, dones, dishes, chopsticks, statesImages;
     public boolean active, interblock;
     ImageIcon philosopher, edish, ldish, rdish, fdish, chop, nothing, eating, thinking, waiting, satisfied;
@@ -26,6 +24,7 @@ public final class UI extends javax.swing.JFrame {
         initLabels();
         active = false;
         interblock = false;
+        execResult.setText("");
         this.getContentPane().setBackground(new Color(255, 255, 255));
         stopButton.setEnabled(false);
         pauseButton.setEnabled(false);
@@ -44,6 +43,10 @@ public final class UI extends javax.swing.JFrame {
         thinking = new ImageIcon(getClass().getResource("/misc/thinking.png"));
         waiting = new ImageIcon(getClass().getResource("/misc/wating.png"));
         satisfied = new ImageIcon(getClass().getResource("/misc/done.png"));
+        positionIcons();
+    }
+    
+    public void positionIcons(){
         philo2.setIcon(rotateImageIcon(philosopher, 360/5));
         philo3.setIcon(rotateImageIcon(philosopher, (360/5)*2));
         philo4.setIcon(rotateImageIcon(philosopher, (360/5)*3));
@@ -62,7 +65,8 @@ public final class UI extends javax.swing.JFrame {
     
     public void startrun(){
         Random r = new Random();
-        palillo.clear();
+        palillo = new ArrayList<>();
+        fs = new Filosofo[5];
         for(int i = 0; i < 5; i++){
             palillo.add(new Semaphore(1, true));
         }
@@ -138,6 +142,10 @@ public final class UI extends javax.swing.JFrame {
                     }
                 }
                 redo();
+                startButton.setEnabled(true);
+                stopButton.setEnabled(false);
+                pauseButton.setEnabled(false);
+                continueButton.setEnabled(false);
             }
         };
         check.start();
@@ -367,6 +375,9 @@ public final class UI extends javax.swing.JFrame {
             }
         });
 
+        execResult.setForeground(new java.awt.Color(247, 29, 55));
+        execResult.setText("hola");
+
         stopButton.setText("Detener ejecucion");
         stopButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -481,128 +492,124 @@ public final class UI extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(helpLable)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(helpLable))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(stopButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(startButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pauseButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(continueButton, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(stopButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(startButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(pauseButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(continueButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(filo5)
-                                    .addComponent(filo4)
-                                    .addComponent(filo3)
-                                    .addComponent(filo1)
-                                    .addComponent(name))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(filo5)
+                                            .addComponent(filo4)
+                                            .addComponent(filo3)
+                                            .addComponent(filo1)
+                                            .addComponent(name))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(iter5)
+                                            .addComponent(iter)
+                                            .addComponent(iter4)
+                                            .addComponent(iter3)
+                                            .addComponent(iter1)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(filo2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(iter2)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(done2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(done5)
+                                    .addComponent(done4)
+                                    .addComponent(done3)
+                                    .addComponent(done1)
+                                    .addComponent(done))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(iter5)
-                                    .addComponent(iter)
-                                    .addComponent(iter4)
-                                    .addComponent(iter3)
-                                    .addComponent(iter1)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(filo2)
-                                .addGap(18, 18, 18)
-                                .addComponent(iter2)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(done2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(done5)
-                            .addComponent(done4)
-                            .addComponent(done3)
-                            .addComponent(done1)
-                            .addComponent(done))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(state2)
-                            .addComponent(state5)
-                            .addComponent(state4)
-                            .addComponent(state3)
-                            .addComponent(state)
-                            .addComponent(state1))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addComponent(execResult)
-                .addContainerGap(22, Short.MAX_VALUE))
+                                    .addComponent(state2)
+                                    .addComponent(state5)
+                                    .addComponent(state4)
+                                    .addComponent(state3)
+                                    .addComponent(state)
+                                    .addComponent(state1)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(execResult)))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(execResult))
+                        .addComponent(startButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stopButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pauseButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(continueButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(startButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(stopButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pauseButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(continueButton))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(state, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(done, javax.swing.GroupLayout.Alignment.TRAILING))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(state, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(done, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(state1)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(done1)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(state1)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(done1)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(iter1)
-                                                    .addComponent(filo1)))))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(iter, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(name, javax.swing.GroupLayout.Alignment.TRAILING))
-                                        .addGap(26, 26, 26)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(state2)
-                                        .addComponent(done2))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(filo2)
-                                        .addComponent(iter2)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(iter1)
+                                            .addComponent(filo1)))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(state3, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(done3, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(iter3, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(filo3, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(state4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(done4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(iter4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(filo4, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(state5, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(done5, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(iter5, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(filo5, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(2, 2, 2)))))
-                .addGap(21, 21, 21)
+                                    .addComponent(iter, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(name, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(26, 26, 26)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(state2)
+                                .addComponent(done2))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(filo2)
+                                .addComponent(iter2)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(state3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(done3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(iter3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(filo3, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(state4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(done4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(iter4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(filo4, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(state5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(done5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(iter5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(filo5, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(execResult)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(helpLable)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         filo1.getAccessibleContext().setAccessibleName("filo1_name");
@@ -611,9 +618,7 @@ public final class UI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-        if (interblock) {
-            interblock = false;
-        }
+        interblock = false;
         startrun();
     }//GEN-LAST:event_startButtonActionPerformed
 
@@ -626,15 +631,6 @@ public final class UI extends javax.swing.JFrame {
     }//GEN-LAST:event_stopButtonActionPerformed
 
     private void pauseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseButtonActionPerformed
-        //active = false;
-        
-        //for(int i = 0; i < 5; i++){
-        //    try {
-        //        palillo.get(i).wait();
-        //    } catch (InterruptedException ex) {
-        //        Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
-        //    }
-        //}
         for(int i = 0; i < 5;i++){
             fs[i].stopThread();
         }        
@@ -643,14 +639,10 @@ public final class UI extends javax.swing.JFrame {
     }//GEN-LAST:event_pauseButtonActionPerformed
 
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
-        //active = true;
-        
-        //for(int i = 0; i < 5; i++){
-        //    palillo.get(i).notify();
-        //}
         for(int i = 0; i < 5;i++){
             fs[i].resumeThread();
         }
+        
         pauseButton.setEnabled(true);
         continueButton.setEnabled(false);
     }//GEN-LAST:event_continueButtonActionPerformed
