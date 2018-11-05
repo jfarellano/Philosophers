@@ -18,13 +18,14 @@ public final class UI extends javax.swing.JFrame {
     public static Filosofo[] fs = new Filosofo[5];
     static ArrayList<Semaphore> palillo = new ArrayList<>();
     public static JLabel[] iterations, states, dones, dishes, chopsticks, statesImages;
-    public boolean active;
+    public boolean active, interblock;
     ImageIcon philosopher, edish, ldish, rdish, fdish, chop, nothing, eating, thinking, waiting, satisfied;
     
     public UI() {
         initComponents();
         initLabels();
         active = false;
+        interblock = false;
         this.getContentPane().setBackground(new Color(255, 255, 255));
         stopButton.setEnabled(false);
         pauseButton.setEnabled(false);
@@ -61,8 +62,12 @@ public final class UI extends javax.swing.JFrame {
     
     public void startrun(){
         Random r = new Random();
+        palillo.clear();
         for(int i = 0; i < 5; i++){
             palillo.add(new Semaphore(1, true));
+        }
+        for(int i = 0; i < 5;i++){
+            fs[i] = null;
         }
         for(int i = 0; i < 5;i++){
             Filosofo f = new Filosofo(palillo, i, 5, r.nextInt(10-1)+1);
@@ -114,10 +119,11 @@ public final class UI extends javax.swing.JFrame {
         Thread check = new Thread(){
             public void run(){
                 while(active){
-                    boolean alldone = true, interblock = true;
+                    boolean alldone = true;
+                    interblock = true;
                     for(int i = 0; i < 5; i++){
                         if(!fs[i].isDone()) alldone = false;
-                        if(fs[i].estado != 1) interblock = false;
+                        if(fs[i].estado != 1) interblock = false; //Corregir...!!
                     }
                     redo();
                     if(alldone){
@@ -605,6 +611,9 @@ public final class UI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
+        if (interblock) {
+            interblock = false;
+        }
         startrun();
     }//GEN-LAST:event_startButtonActionPerformed
 
@@ -617,22 +626,30 @@ public final class UI extends javax.swing.JFrame {
     }//GEN-LAST:event_stopButtonActionPerformed
 
     private void pauseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseButtonActionPerformed
-        active = false;
-        for(int i = 0; i < 5; i++){
-            try {
-                palillo.get(i).wait();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        //active = false;
+        
+        //for(int i = 0; i < 5; i++){
+        //    try {
+        //        palillo.get(i).wait();
+        //    } catch (InterruptedException ex) {
+        //        Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+        //    }
+        //}
+        for(int i = 0; i < 5;i++){
+            fs[i].stopThread();
+        }        
         pauseButton.setEnabled(false);
         continueButton.setEnabled(true);
     }//GEN-LAST:event_pauseButtonActionPerformed
 
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
-        active = true;
-        for(int i = 0; i < 5; i++){
-            palillo.get(i).notify();
+        //active = true;
+        
+        //for(int i = 0; i < 5; i++){
+        //    palillo.get(i).notify();
+        //}
+        for(int i = 0; i < 5;i++){
+            fs[i].resumeThread();
         }
         pauseButton.setEnabled(true);
         continueButton.setEnabled(false);

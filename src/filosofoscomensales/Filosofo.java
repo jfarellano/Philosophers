@@ -13,7 +13,7 @@ public class Filosofo extends Thread {
     public int iteraciones;
     public int estado; //0 = Pensando, 1 = Esperando, 2 = Comiendo, 3 = Saciado.
     public int hecho;
-    public boolean left, rigth, active;
+    public boolean left, rigth, active, stop;
     
     public Filosofo(ArrayList<Semaphore> palillo, int idFilosofo, int NumeroFilosofos,int iteraciones) {
         this.palillo = palillo;
@@ -24,12 +24,20 @@ public class Filosofo extends Thread {
         this.left = false;
         this.rigth = false;
         this.active = true;
+        this.stop = false;
     }
     
     private void pensar(int iteracion){
         try {
             estado = 0;
             this.sleep((long) (10000 * Math.random()));
+            synchronized(this) {
+                while(stop) {
+                    wait();
+                    System.out.println("Im in! - pensar");
+                }
+               //this.sleep((long) (5000 * Math.random()));
+            }
         } catch (InterruptedException ex) {
             Logger.getLogger(Filosofo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -39,6 +47,13 @@ public class Filosofo extends Thread {
         try {
             estado = 2;
             this.sleep((long) (10000 * Math.random()));
+            synchronized(this) {
+                while(stop) {
+                    wait();
+                    System.out.println("Im in! - comer");
+                }
+                //this.sleep((long) (5000 * Math.random()));
+            }
             hecho += 1;
         } catch (InterruptedException ex) {
             Logger.getLogger(Filosofo.class.getName()).log(Level.SEVERE, null, ex);
@@ -47,6 +62,17 @@ public class Filosofo extends Thread {
         
     private void esperando(int iteracion) {
         estado = 1;
+        try {
+            synchronized(this) {
+                while(stop) {
+                    wait();
+                    System.out.println("Im in! - esperar");
+                }
+               //this.sleep((long) (10000 * Math.random()));
+            }
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Filosofo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public boolean isDone(){
@@ -56,6 +82,22 @@ public class Filosofo extends Thread {
     public int rigthIndex(int i){
         if(i == 0) return 4;
         return i-1;
+    }
+    
+    public void fixDispair(){
+        palillo.get(idFilosofo).release();
+        this.left = false;
+        palillo.get(rigthIndex(idFilosofo)).release();
+        this.rigth = false;
+    }
+    
+    public void stopThread(){
+        stop = true;
+    }
+    
+    public synchronized void resumeThread(){
+        stop = false;
+        notify();
     }
     
     @Override

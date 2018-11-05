@@ -182,12 +182,11 @@
                                   <Component id="iter5" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="filo5" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" pref="348" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="helpLable" min="-2" max="-2" attributes="0"/>
