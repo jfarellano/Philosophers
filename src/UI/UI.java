@@ -127,7 +127,7 @@ public final class UI extends javax.swing.JFrame {
                     interblock = true;
                     for(int i = 0; i < 5; i++){
                         if(!fs[i].isDone()) alldone = false;
-                        if(fs[i].estado != 1) interblock = false; //Corregir...!!
+                        if(fs[i].estado != 1) interblock = false;
                     }
                     redo();
                     if(alldone){
