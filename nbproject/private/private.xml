@@ -2,6 +2,10 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/John/Documents/NetBeansProjects/Philosophers/src/UI/UI.java</file>
+            <file>file:/C:/Users/John/Documents/NetBeansProjects/Philosophers/src/UI/helpFrame.java</file>
+            <file>file:/C:/Users/John/Documents/NetBeansProjects/Philosophers/src/filosofoscomensales/Filosofo.java</file>
+        </group>
     </open-files>
 </project-private>
