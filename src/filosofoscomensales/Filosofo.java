@@ -30,7 +30,7 @@ public class Filosofo extends Thread {
     private void pensar(int iteracion){
         try {
             estado = 0;
-            this.sleep((long) (100 * Math.random()));
+            this.sleep((long) (5000 * Math.random()));
             synchronized(this) {
                 while(stop) {
                     wait();
@@ -45,7 +45,7 @@ public class Filosofo extends Thread {
     private void comer(int iteracion){
         try {
             estado = 2;
-            this.sleep((long) (100 * Math.random()));
+            this.sleep((long) (5000 * Math.random()));
             synchronized(this) {
                 while(stop) {
                     wait();
